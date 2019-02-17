@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { Add, Delete, Update } from '../actions/task.action';
 import { Task } from '../task';
+import { TaskService } from '../task.service';
 
 @Component({
   selector: 'app-todo-list',
@@ -8,14 +12,33 @@ import { Task } from '../task';
 })
 export class TodoListComponent implements OnInit {
 
-  task: Task = {
-    id: 1,
-    state: "done",
-    description: "ngrxってどんなものか知りたい"
-  };
-  constructor() { }
+  tasks: Task[];
+
+  task$: Observable<Task>;
+
+  constructor(private taskService: TaskService, private store: Store<{ task: Task }>) {
+    this.task$ = store.pipe(select('task'));
+  }
 
   ngOnInit() {
+    this.getTasks();
+  }
+
+  add() {
+    this.store.dispatch(new Add());
+  }
+
+  delete() {
+    this.store.dispatch(new Delete());
+  }
+
+  update() {
+    this.store.dispatch(new Update());
+  }
+
+  getTasks(): void {
+    this.taskService.getTasks()
+    .subscribe(tasks => this.tasks = tasks);
   }
 
 }
