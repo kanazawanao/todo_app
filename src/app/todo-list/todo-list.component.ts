@@ -16,12 +16,18 @@ export class TodoListComponent implements OnInit {
 
   task$: Observable<Task>;
 
+  selectedTask: Task;
+
   constructor(private taskService: TaskService, private store: Store<{ task: Task }>) {
     this.task$ = store.pipe(select('task'));
   }
 
   ngOnInit() {
     this.getTasks();
+  }
+
+  onSelect(task: Task): void {
+    this.selectedTask = task;
   }
 
   add() {
