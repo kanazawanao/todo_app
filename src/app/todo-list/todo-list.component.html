@@ -1,13 +1,8 @@
-<input type="text" placeholder="what needs to be done">
-<input type="submit">
-<hr>
-<p>view all</p>
-<ul>
-	<li *ngFor="let task of tasks">
-		<a routerLink="/detail/{{hero.id}}">
-			<p>・{{task.id}} : {{task.done}} : {{task.name}}</p>
-		</a>
-	</li>
+<h2>My Takss</h2>
+<ul class="tasks">
+  <li *ngFor="let task of tasks">
+    <a routerLink="/detail/{{task.id}}">
+      <span class="badge">{{task.id}}</span> {{task.name}}
+    </a>
+  </li>
 </ul>
-
-<app-task-detail [task]="selectedTask"></app-task-detail>
