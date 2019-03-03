@@ -3,6 +3,18 @@
   <li *ngFor="let task of tasks">
     <a routerLink="/detail/{{task.id}}">
       <span class="badge">{{task.id}}</span> {{task.name}}
-    </a>
+		</a>
+		<button class="delete" title="delete task"
+			(click)="delete(task)">x</button>
   </li>
 </ul>
+
+<div>
+	<label>Task name:
+		<input #taskName />
+	</label>
+	<!-- (click) 入力値をadd()に渡したあと、入力をクリアする -->
+	<button (click)="add(taskName.value); taskName.value=''">
+		add
+	</button>
+</div>
