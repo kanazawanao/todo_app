@@ -14,6 +14,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService }  from './in-memory-data.service';
 import { TaskSearchComponent } from './task-search/task-search.component';
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { TaskSearchComponent } from './task-search/task-search.component';
     TaskDetailComponent,
     MessagesComponent,
     DashboardComponent,
-    TaskSearchComponent
+    TaskSearchComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,

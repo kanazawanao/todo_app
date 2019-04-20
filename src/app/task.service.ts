@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Task } from './task';
-import { TASKS } from './mock/tasks';
 import { Observable, of } from 'rxjs';
 import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -23,11 +22,10 @@ export class TaskService {
   getTasks(): Observable<Task[]> {
     // TODO: send the message _after_ fetching the tasks
     this.messageService.add('TaskService: fetched tasks');
-    return this.http.get<Task[]>(this.tasksUrl)
-      .pipe(
-        tap(tasks => this.log('fetched tasks')),
-        catchError(this.handleError('getTasks', []))
-      );
+    return this.http.get<Task[]>(this.tasksUrl).pipe(
+      tap(tasks => this.log('fetched tasks')),
+      catchError(this.handleError('getTasks', []))
+    );
   }
 
   getTask(id: number): Observable<Task> {
