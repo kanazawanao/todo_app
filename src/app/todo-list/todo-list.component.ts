@@ -3,7 +3,7 @@ import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Add, Delete, Update } from '../actions/task.action';
 import { Task } from '../task';
-import { TaskService } from '../task.service';
+import { TaskService } from '../service/task.service';
 
 @Component({
   selector: 'app-todo-list',

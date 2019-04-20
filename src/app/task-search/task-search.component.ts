@@ -4,7 +4,7 @@ import {
   debounceTime, distinctUntilChanged, switchMap
 } from 'rxjs/operators';
 import { Task } from '../task';
-import { TaskService } from '../task.service';
+import { TaskService } from '../service/task.service';
 
 @Component({
   selector: 'app-task-search',

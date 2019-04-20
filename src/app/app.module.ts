@@ -12,7 +12,7 @@ import { MessagesComponent } from './messages/messages.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService }  from './in-memory-data.service';
+import { InMemoryDataService }  from './service/in-memory-data.service';
 import { TaskSearchComponent } from './task-search/task-search.component';
 import { ErrorComponent } from './error/error.component';
 
