@@ -24,7 +24,7 @@ describe('TaskService', () => {
 
   beforeEach(() => {
     // TODO: spy on other methods too
-    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'put', 'post', 'delete', 'pipe']);
+    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get', 'put', 'post', 'delete']);
     messageService = jasmine.createSpyObj('MessageService', ['add']);
     taskService = new TaskService(<any> httpClientSpy, messageService);
   })
@@ -44,6 +44,11 @@ describe('TaskService', () => {
       tasks => expect(tasks).toEqual(expectedTasks),
       fail
     );
+  });
+
+  it('expects a GET request getTasks Error', () => {
+    httpClientSpy.get.and.throwError('Get Tasks Error');
+    expect(taskService.getTasks()).toThrow();
   });
 
   it('expects a GET request getTask', () => {
