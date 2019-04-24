@@ -12,17 +12,17 @@ describe('MessageService', () => {
 
   it('add Test', () => {
     const service: MessageService = TestBed.get(MessageService);
-    let result: string[] = ["1","2"];
-    service.add("1");
-    service.add("2");
+    const result: string[] = ['1', '2'];
+    service.add('1');
+    service.add('2');
     expect(service.messages).toEqual(result);
   });
 
   it('clear Test', () => {
     const service: MessageService = TestBed.get(MessageService);
-    let result: string[] = [];
-    service.add("1");
-    service.add("2");
+    const result: string[] = [];
+    service.add('1');
+    service.add('2');
     service.clear();
     expect(service.messages).toEqual(result);
   });

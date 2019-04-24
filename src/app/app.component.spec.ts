@@ -6,8 +6,8 @@ import { MessagesComponent } from './messages/messages.component';
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [    
-        RouterTestingModule    
+      imports: [
+        RouterTestingModule
       ],
       declarations: [
         AppComponent,

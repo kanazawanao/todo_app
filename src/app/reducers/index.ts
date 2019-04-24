@@ -1,14 +1,10 @@
 import {
-  ActionReducer,
   ActionReducerMap,
-  createFeatureSelector,
-  createSelector,
   MetaReducer,
   Action
 } from '@ngrx/store';
 import { environment } from '../../environments/environment';
 import { ActionTypes } from '../actions/task.action';
-
 
 export const initialState = 0;
 
@@ -29,10 +25,10 @@ export function taskReducer(state = initialState, action: Action) {
 
     case ActionTypes.Delete:
       return state - 1;
- 
+
     case ActionTypes.Update:
       return 0;
- 
+
     default:
       return state;
   }

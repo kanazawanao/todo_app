@@ -25,10 +25,10 @@ export class TaskSearchComponent implements OnInit {
     this.tasks$ = this.searchTerms.pipe(
       // 各キーストロークの後、検索前に300ms待つ
       debounceTime(300),
- 
+
       // 直前の検索語と同じ場合は無視する
       distinctUntilChanged(),
- 
+
       // 検索語が変わる度に、新しい検索observableにスイッチする
       switchMap((term: string) => this.taskService.searchTasks(term)),
     );

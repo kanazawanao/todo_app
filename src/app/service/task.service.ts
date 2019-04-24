@@ -88,13 +88,13 @@ export class TaskService {
    */
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-  
+
       // TODO: リモート上のロギング基盤にエラーを送信する
       console.error(error); // かわりにconsoleに出力
-  
+
       // TODO: ユーザーへの開示のためにエラーの変換処理を改善する
       this.log(`${operation} failed: ${error.message}`);
-  
+
       // 空の結果を返して、アプリを持続可能にする
       return of(result as T);
     };

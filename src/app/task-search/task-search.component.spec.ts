@@ -11,7 +11,7 @@ describe('TaskSearchComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [    
+      imports: [
         FormsModule,
         RouterTestingModule,
         HttpClientTestingModule
