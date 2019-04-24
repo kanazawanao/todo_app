@@ -1,22 +1,16 @@
-import {
-  ActionReducerMap,
-  MetaReducer,
-  Action
-} from '@ngrx/store';
+import { ActionReducerMap, MetaReducer, Action } from '@ngrx/store';
 import { environment } from '../../environments/environment';
 import { ActionTypes } from '../actions/task.action';
 
 export const initialState = 0;
 
-export interface State {
+export interface State {}
 
-}
+export const reducers: ActionReducerMap<State> = {};
 
-export const reducers: ActionReducerMap<State> = {
-
-};
-
-export const metaReducers: MetaReducer<State>[] = !environment.production ? [] : [];
+export const metaReducers: MetaReducer<State>[] = !environment.production
+  ? []
+  : [];
 
 export function taskReducer(state = initialState, action: Action) {
   switch (action.type) {

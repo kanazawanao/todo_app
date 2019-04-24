@@ -16,9 +16,9 @@ export class InMemoryDataService implements InMemoryDbService {
       { id: 6, done: false, name: 'test5' },
       { id: 7, done: true, name: 'test0' },
       { id: 8, done: false, name: 'test99' },
-      { id: 9, done: false, name: '123' },
+      { id: 9, done: false, name: '123' }
     ];
-    return {tasks};
+    return { tasks };
   }
 
   // Overrides the genId method to ensure that a hero always has an id.
