@@ -1,27 +1,30 @@
 import { ActionReducerMap, MetaReducer, Action } from '@ngrx/store';
 import { environment } from '../../environments/environment';
 import { ActionTypes } from '../actions/task.action';
+import { Task } from '../task';
 
-export const initialState = 0;
+export interface State {
+  loading: boolean;
+  tasks: Task[];
+}
 
-export interface State {}
-
-export const reducers: ActionReducerMap<State> = {};
-
-export const metaReducers: MetaReducer<State>[] = !environment.production
-  ? []
-  : [];
+export const initialState: State = {
+  loading: false,
+  tasks: []
+};
 
 export function taskReducer(state = initialState, action: Action) {
   switch (action.type) {
     case ActionTypes.Add:
-      return state + 1;
+      // add process
+      return { ...state, loading: true };
 
     case ActionTypes.Delete:
-      return state - 1;
+    // delete process
 
     case ActionTypes.Update:
-      return 0;
+      // update process
+      return { ...state, loading: true };
 
     default:
       return state;
