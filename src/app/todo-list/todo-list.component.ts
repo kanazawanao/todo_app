@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Add, Delete, Update } from '../actions/task.action';
+import { Add, Delete, Update, GetAll } from '../actions/task.action';
 import { Task } from '../task';
 import { TaskService } from '../service/task.service';
+import * as fromTask from '../reducers/task.reducer';
 
 @Component({
   selector: 'app-todo-list',
@@ -14,20 +15,30 @@ export class TodoListComponent implements OnInit {
 
   tasks: Task[];
 
-  task$: Observable<Task>;
+  login: boolean;
+
+  tasks$: Observable<Task[]>;
+
+  login$: Observable<boolean>;
 
   selectedTask: Task;
 
-  constructor(private taskService: TaskService, private store: Store<{ task: Task }>) {
-    this.task$ = store.pipe(select('task'));
+  constructor(
+    private taskService: TaskService,
+    private store: Store<fromTask.State>,
+  ) {
   }
 
   ngOnInit() {
+    this.login$ = this.store.pipe(select(fromTask.getLogin));
+    this.login$._isScalar = true;
+    console.log(this.login$);
     this.getTasks();
   }
 
   onSelect(task: Task): void {
     this.selectedTask = task;
+    this.store.dispatch(new Update());
   }
 
   update() {
@@ -35,6 +46,8 @@ export class TodoListComponent implements OnInit {
   }
 
   getTasks(): void {
+    console.log('getTasks実行されました');
+    this.store.dispatch(new GetAll());
     this.taskService.getTasks()
     .subscribe(tasks => this.tasks = tasks);
   }

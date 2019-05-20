@@ -1,29 +1,15 @@
-import { ActionReducerMap, MetaReducer, Action } from '@ngrx/store';
-import { environment } from '../../environments/environment';
-import { ActionTypes } from '../actions/task.action';
+import { createFeatureSelector, createSelector } from '@ngrx/store';
 
-export const initialState = 0;
+import * as fromTodo from './task.reducer';
 
-export interface State {}
+/**
+ * 状態 および Reducer
+ */
+export { State, reducer } from './task.reducer';
 
-export const reducers: ActionReducerMap<State> = {};
-
-export const metaReducers: MetaReducer<State>[] = !environment.production
-  ? []
-  : [];
-
-export function taskReducer(state = initialState, action: Action) {
-  switch (action.type) {
-    case ActionTypes.Add:
-      return state + 1;
-
-    case ActionTypes.Delete:
-      return state - 1;
-
-    case ActionTypes.Update:
-      return 0;
-
-    default:
-      return state;
-  }
-}
+/**
+ * セレクタ
+ */
+export const getFeatureState = createFeatureSelector<fromTodo.State>('Todo');
+export const getTasks = createSelector(getFeatureState, fromTodo.getTasks);
+export const getLogin = createSelector(getFeatureState, fromTodo.getLogin);
