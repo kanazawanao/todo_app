@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { select, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import * as fromTask from './reducers/task.reducer';
-import { TaskService } from './service/task.service';
+
+import * as TaskReducer from './reducers/task.reducer';
+import { getLogin } from './reducers';
 
 @Component({
   selector: 'app-root',
@@ -13,10 +14,10 @@ export class AppComponent implements OnInit {
   title = 'Todo';
   login: boolean;
   login$: Observable<boolean>;
-  constructor(private store: Store<fromTask.State>){}
+  constructor(private store: Store<TaskReducer.State>){
+    this.login$ = this.store.select(getLogin);
+  }
   ngOnInit(){
-    this.login$ = this.store.pipe(select(fromTask.getLogin));
-    console.log('aaa');
-    console.log(this.login$._isScalar);
+    
   }
 }

@@ -1,9 +1,9 @@
 # ngrxまとめ
 https://ngrx.io/
 
-## Store
+# Store
 - Store is RxJS powered state management for Angular applications, inspired by Redux. Store is a controlled state container designed to help write performant, consistent applications on top of Angular.
-- storeは、Reduxを参考にした、Angularアプリケーション用のRxJSを動力源とした状態管理システムです。  StoreはAngularの上に高性能で一貫性のあるアプリケーションを書くのを助けるように設計された制御状態コンテナです。
+	- storeは、Reduxを参考にした、Angularアプリケーション用のRxJSを動力源とした状態管理システムです。  StoreはAngularの上に高性能で一貫性のあるアプリケーションを書くのを助けるように設計された制御状態コンテナです。
 
 ## Key concepts
 - Actions describe unique events that are dispatched from components and services.
@@ -20,16 +20,16 @@ https://ngrx.io/
 npm install @ngrx/store --save
 ```
 
-## Architecture
-### Actions
+# Architecture
+# Actions
 - Actions are one of the main building blocks in NgRx. Actions express unique events that happen throughout your application. From user interaction with the page, external interaction through network requests, and direct interaction with device APIs, these and more events are described with actions.
 	- actionはNgRxの主要な構成要素の一つです。actionはアプリ全体から実行されるユニークなイベントを表します。ページとユーザーとの相互作用、ネットワーク要求を介した外部の相互作用、およびデバイスAPIとの直接の相互作用から、これらのイベントおよびその他のイベントがactionとともに記述されます
 
-#### Introduction
+## Introduction
 - Actions are used in many areas of NgRx. Actions are the inputs and outputs of many systems in NgRx. Actions help you to understand how events are handled in your application. This guide provides general rules and examples for writing actions in your application.
 	- actionはNgRxの大部分で利用されます。actionはNgRxのシステムの入力と出力を担います。actionは、アプリケーションでイベントがどのように処理されるのかを理解するのに役立ちます。
 
-#### The Action interface
+## The Action interface
 - An Action in NgRx is made up of a simple interface:
 	- NgRxのActionはシンプルなインターフェースで構成されています
 ```ts
@@ -62,7 +62,7 @@ interface Action {
 - This action describes an event triggered by a user clicking a login button from the login page to attempt to authenticate a user. The payload contains the username and password provided from the login page.
 	- このアクションは、ユーザーがログインページからログインボタンをクリックしてユーザーの認証を試みることによってトリガーされるイベントを表します。ペイロードには、ログインページから提供されたユーザー名とパスワードが含まれています。
 
-#### Writing actions
+## Writing actions
 - There are a few rules to writing good actions within your application.
 	- アプリで良いアクションを書くためのいくつかのルール
 	1. Upfront - write actions before developing features to understand and gain a shared knowledge of the feature being implemented.
@@ -112,7 +112,7 @@ click(username: string, password: string) {
 	3. The Login text after the category is a description about what event occurred from this action. In this case, the user clicked a login button from the login page to attempt to authenticate with a username and password.
 		- カテゴリの後のログインテキストは、このアクションから発生したイベントについての説明です。この場合、ユーザーはログインページからログインボタンをクリックして、ユーザー名とパスワードで認証を試みます。
 
-#### Creating action unions
+## Creating action unions
 - The consumers of actions, whether it be reducers or effects use the type information from an action to determine whether they need to handle the action. Actions are grouped together by feature area, but also need to expose the action type information. Looking at the previous example of the Login action, you'll define some additional type information for the actions.
 	- アクションの消費者は、それがreducersであろうとeffectsであろうと、アクションからの型情報を使用して、アクションを処理する必要があるかどうかを判断します。アクションは機能領域ごとにグループ化されていますが、アクションタイプ情報を公開する必要もあります。前のLoginアクションの例を見て、アクションのためにいくつかの追加の型情報を定義します。
 ```ts
@@ -134,24 +134,29 @@ export type Union = Login;
 - Instead of putting the action type string directly in the class, the [Login Page] Login string is now provided in the ActionTypes enum. Also, an additional Union type is exported with the Login class. These additional exports allow you to take advantage of discriminated unions in TypeScript. Why this is important is covered in the reducers and effects guides.
 	- アクションタイプ文字列を直接クラスに入れる代わりに、[Login Page]ログイン文字列がActionTypes列挙型に提供されるようになりました。また、Loginクラスと共に追加のUnion型がエクスポートされます。これらの追加のエクスポートにより、TypeScriptで差別化された共用体を利用することができます。これがなぜ重要なのかは、reducersとeffectsガイドで説明されています。
 
-### Reducers
-#### Reducers
+# Reducers
 - Reducers in NgRx are responsible for handling transitions from one state to the next state in your application. Reducer functions handle these transitions by determining which actions to handle based on the type.
 	- NgRxのReducersは、アプリケーション内のある状態から次の状態への遷移を処理します。Reducers関数は、タイプに基づいてどのアクションを処理するかを決定することによってこれらの遷移を処理します。
 
-#### Introduction
+## Introduction
 - Reducer functions are pure functions in that they produce the same output for a given input. They are without side effects and handle each state transition synchronously. Each reducer function takes the latest Action dispatched, the current state, and determines whether to return a newly modified state or the original state. This guide shows you how to write reducer functions, register them in your Store, and compose feature states.
-	- Reducers関数は、
-	
-#### The reducer function
+	- Reducers関数は、与えられた入力に対して同じ出力を生成するという点で純粋な関数です。これらは副作用がなく、各状態遷移を同期的に処理します。各Reducers関数は、最新のAction、つまり現在の状態を受け取り、新しく変更された状態と元の状態のどちらを返すかを決定します。このガイドでは、Reducers関数を作成し、それらをストアに登録し、そしてフィーチャー状態を構成する方法を説明します。
+
+## The reducer function
 - There are a few consistent parts of every piece of state managed by a reducer.
+	- reducerによって管理されるすべての状態には、いくつか一貫した部分があります。
 	1. An interface or type that defines the shape of the state.
+		- 状態の型を定義するインターフェースまたはタイプ。
 	2. The arguments including the initial state or current state and the current action.
+		- 初期状態または現在の状態と現在のアクションを含む引数。
 	3. The switch statement
+		- ★★★switch ステートメント？★★★
 
 - Below is an example of a set of actions to handle the state of a scoreboard, and the associated reducer function.
+	- 以下は、スコアボードの状態を処理するための一連のアクションと、それに関連するreducer機能の例です。
 
 - First, define some actions for interacting with a piece of state.
+	- まず、状態の一部と対話するためのアクションを定義します。
 ```ts
 import { Action } from '@ngrx/store';
  
@@ -179,9 +184,11 @@ export type ActionsUnion = IncrementHome | IncrementAway | Reset;
 ```
 
 - Next, create a reducer file that imports the actions and define a shape for the piece of state.
+	- 次に、アクションをインポートするreducerファイルを作成し、状態の一部の型を定義します。
 
-#### Defining the state shape
+### Defining the state shape
 - Each reducer function is a listener of actions. The scoreboard actions defined above describe the possible transitions handled by the reducer. Import multiple sets of actions to handle additional state transitions within a reducer.
+	- 各reducer関数はアクションリスナーです。上記で定義されたスコアボードのアクションはreducerによって処理される可能性のある遷移について説明しています。reducer内で追加の状態遷移を処理するために複数のアクションセットをインポートします。
 ```ts
 import * as Scoreboard from '../actions/scoreboard-page.actions';
 
@@ -192,10 +199,14 @@ export interface State {
 ```
 
 - You define the shape of the state according to what you are capturing, whether it be a single type such as a number, or a more complex object with multiple properties.
+	- 数値のような単一の型であるか、複数のプロパティを持つより複雑なオブジェクトであるかにかかわらず、キャプチャしているものに従って状態の型を定義します。
 
-#### Setting the initial state
+### Setting the initial state
 - The initial state gives the state an initial value, or provides a value if the current state is undefined. You set the initial state with defaults for your required state properties.
+	- initial state は状態の初期値、または現在の状態が未定義の場合の値を提供します。必要な状態のプロパティに対して、デフォルトで初期状態を設定します。
+
 - Create and export a variable to capture the initial state with one or more default values.
+	- 初期状態を1つ以上のデフォルト値でキャプチャするための変数を作成してエクスポートします。
 ```ts
 export const initialState: State = {
   home: 0,
@@ -203,4 +214,455 @@ export const initialState: State = {
 };
 ```
 
-### Selectors
+### Creating the reducer function
+- The reducer function's responsibility is to handle the state transitions in an immutable way. Define a reducer function that handles the actions for managing the state of the scoreboard.
+
+```ts
+export function reducer(
+  state = initialState,
+  action: Scoreboard.ActionsUnion
+): State {
+  switch (action.type) {
+    case Scoreboard.ActionTypes.IncrementHome: {
+      return {
+        ...state,
+        home: state.home + 1,
+      };
+    }
+ 
+    case Scoreboard.ActionTypes.IncrementAway: {
+      return {
+        ...state,
+        away: state.away + 1,
+      };
+    }
+ 
+    case Scoreboard.ActionTypes.Reset: {
+      return action.payload; // typed to { home: number, away: number }
+    }
+ 
+    default: {
+      return state;
+    }
+  }
+}
+```
+
+- Reducers use switch statements in combination with TypeScript's discriminated unions defined in your actions to provide type-safe processing of actions in a reducer. Switch statements use type unions to determine the correct shape of the action being consumed in each case. The action types defined with your actions are reused in your reducer functions as case statements. The type union is also provided to your reducer function to constrain the available actions that are handled in that reducer function.
+
+- In the example above, the reducer is handling 3 actions: IncrementHome, IncrementAway, and Reset. Each action is strongly-typed based on the provided ActionsUnion. Each action handles the state transition immutably. This means that the state transitions are not modifying the original state, but are returning a new state object using the spread operator. The spread syntax copies the properties from the current state into the object, creating a new reference. This ensures that a new state is produced with each change, preserving the purity of the change. This also promotes referential integrity, guaranteeing that the old reference was discarded when a state change occurred.
+
+> Note: The spread operator only does shallow copying and does not handle deeply nested objects. You need to copy each level in the object to ensure immutability. There are libraries that handle deep copying including lodash and immer.
+
+- When an action is dispatched, all registered reducers receive the action. Whether they handle the action is determined by the switch statement. For this reason, each switch statement always includes a default case that returns the previous state when the reducer function doesn't need to handle the action.
+
+## Registering root state
+- The state of your application is defined as one large object. Registering reducer functions to manage parts of your state only defines keys with associated values in the object. To register the global Store within your application, use the StoreModule.forRoot() method with a map of key/value pairs that define your state. The StoreModule.forRoot() registers the global providers for your application, including the Store service you inject into your components and services to dispatch actions and select pieces of state.
+
+```ts
+import { NgModule } from '@angular/core';
+import { StoreModule } from '@ngrx/store';
+import { scoreboardReducer } from './reducers/scoreboard.reducer';
+
+@NgModule({
+  imports: [StoreModule.forRoot({ game: scoreboardReducer })],
+})
+export class AppModule {}
+```
+
+- Registering states with StoreModule.forRoot() ensures that the states are defined upon application startup. In general, you register root states that always need to be available to all areas of your application immediately.
+
+## Register feature state
+- Feature states behave in the same way root states do, but allow you to define them with specific feature areas in your application. Your state is one large object, and feature states register additional keys and values in that object.
+
+- Looking at an example state object, you see how a feature state allows your state to be built up incrementally. Let's start with an empty state object.
+```ts
+import { NgModule } from '@angular/core';
+import { StoreModule } from '@ngrx/store';
+
+@NgModule({
+  imports: [StoreModule.forRoot({})],
+})
+export class AppModule {}
+```
+
+- This registers your application with an empty object for the root state.
+
+```ts
+{
+}
+```
+
+- Now use the scoreboard reducer with a feature NgModule named ScoreboardModule to register additional state.
+
+```ts
+import { NgModule } from '@angular/core';
+import { StoreModule } from '@ngrx/store';
+import { scoreboardReducer } from './reducers/scoreboard.reducer';
+
+@NgModule({
+  imports: [StoreModule.forFeature('game', scoreboardReducer)],
+})
+export class ScoreboardModule {}
+```
+
+- Add the ScoreboardModule to the AppModule to load the state eagerly.
+
+```ts
+import { NgModule } from '@angular/core';
+import { StoreModule } from '@ngrx/store';
+import { ScoreboardModule } from './scoreboard/scoreboard.module';
+
+@NgModule({
+  imports: [StoreModule.forRoot({}), ScoreboardModule],
+})
+export class AppModule {}
+```
+
+- Once the ScoreboardModule is loaded, the game key becomes a property in the object and is now managed in the state.
+
+```ts
+{
+  game: { home: 0, away: 0 }
+}
+```
+
+- Whether your feature states are loaded eagerly or lazily depends on the needs of your application. You use feature states to build up your state object over time and through different feature areas.
+
+# Selectors
+- Selectors are pure functions used for obtaining slices of store state. @ngrx/store provides a few helper functions for optimizing this selection. Selectors provide many features when selecting slices of state.
+	- セレクタは、ストア状態の一片を取得するために使用される純粋な関数です。 @ ngrx / storeはこの選択を最適化するためのいくつかのヘルパー関数を提供します。 セレクタは状態の一片を選択するときに多くの機能を提供します。
+	1. Portable
+		- ポータブル
+	2. Memoization
+		- メモ化
+	3. Composition
+		- 組成
+	4. Testable
+		- テスト可能
+	5. Type-safe
+		- タイプセーフ
+
+- When using the createSelector and createFeatureSelector functions @ngrx/store keeps track of the latest arguments in which your selector function was invoked. Because selectors are pure functions, the last result can be returned when the arguments match without reinvoking your selector function. This can provide performance benefits, particularly with selectors that perform expensive computation. This practice is known as memoization.
+	- createSelectorおよびcreateFeatureSelector関数を使用すると、@ ngrx / storeは、セレクタ関数が呼び出された最新の引数を追跡します。 セレクタは純粋な関数なので、引数が一致したときにセレクタ関数を呼び出さずに最後の結果を返すことができます。これにより、特に高価な計算を実行するセレクタで、パフォーマンス上の利点が得られます。この習慣はメモ化として知られています。
+
+## Using a selector for one piece of state
+```ts
+import { createSelector } from '@ngrx/store';
+ 
+export interface FeatureState {
+  counter: number;
+}
+ 
+export interface AppState {
+  feature: FeatureState;
+}
+ 
+export const selectFeature = (state: AppState) => state.feature;
+ 
+export const selectFeatureCount = createSelector(
+  selectFeature,
+  (state: FeatureState) => state.counter
+);
+```
+
+## Using selectors for multiple pieces of state
+- The createSelector can be used to select some data from the state based on several slices of the same state.
+	- createSelectorを使用して、同じ状態の複数の一片に基づいて状態からデータを選択できます。
+- The createSelector function can take up to 8 selector function for more complete state selections.
+	- createSelector関数は、より完全な状態選択のために最大8つのセレクター関数を取ることができます。
+- For example, imagine you have a selectedUser object in the state. You also have an allBooks array of book objects.
+	- たとえば、状態にselectedUserオブジェクトがあるとします。また、bookオブジェクトのallBooks配列もあります。
+- And you want to show all books for the current user.
+	- 現在のユーザーのすべての本を表示したいとします。
+- You can use createSelector to achieve just that. Your visible books will always be up to date even if you update them in allBooks. They will always show the books that belong to your user if there is one selected and will show all the books when there is no user selected.
+	- それを実現するためにcreateSelectorを使用できます。allBooksでそれらを更新しても、表示されている本は常に最新の状態になります。それらが選択されているものがある場合は常にあなたのユーザーに属する本を表示し、ユーザーが選択されていない場合はすべての本を表示します。
+- The result will be just some of your state filtered by another section of the state. And it will be always up to date.
+	- その結果、あなたの状態の一部だけが、状態の別のセクションによってフィルタリングされます。そしてそれは常に最新のものになるでしょう。
+
+```ts
+import { createSelector } from '@ngrx/store';
+ 
+export interface User {
+  id: number;
+  name: string;
+}
+ 
+export interface Book {
+  id: number;
+  userId: number;
+  name: string;
+}
+ 
+export interface AppState {
+  selectedUser: User;
+  allBooks: Book[];
+}
+ 
+export const selectUser = (state: AppState) => state.selectedUser;
+export const selectAllBooks = (state: AppState) => state.allBooks;
+ 
+export const selectVisibleBooks = createSelector(
+  selectUser,
+  selectAllBooks,
+  (selectedUser: User, allBooks: Book[]) => {
+    if (selectedUser && allBooks) {
+      return allBooks.filter((book: Book) => book.userId === selectedUser.id);
+    } else {
+      return allBooks;
+    }
+  }
+);
+```
+
+## Using selectors with props
+- To select a piece of state based on data that isn't available in the store you can pass props to the selector function. These props gets passed through every selector and the projector function. To do so we must specify these props when we use the selector inside our component.
+	- ストアで利用できないデータに基づいて状態の一部を選択するためには、セレクタ関数に小道具を渡すことができます。 これらの小道具はすべてのセレクタとプロジェクタ機能を通過します。 そのためには、コンポーネント内でセレクターを使用するときにこれらの小道具を指定する必要があります。
+
+- For example if we have a counter and we want to multiply its value, we can add the multiply factor as a prop:
+	- たとえば、カウンタがあり、その値を乗算したい場合は、乗算係数をプロップとして追加できます。
+
+- The last argument of a selector or a projector is the props argument, for our example it looks as follows:
+	- セレクターまたはプロジェクターの最後の引数はprops引数です。この例では次のようになります。
+
+```ts
+export const getCount = createSelector(
+  getCounterValue,
+  (counter, props) => counter * props.multiply
+);
+```
+
+- Inside the component we can define the props:
+	- コンポーネントの中で私たちは小道具を定義することができます：
+```ts
+ngOnInit() {
+  this.counter = this.store.pipe(select(fromRoot.getCount, { multiply: 2 }))
+}
+```
+
+- Keep in mind that a selector only keeps the previous input arguments in its cache. If you re-use this selector with another multiply factor, the selector would always have to re-evaluate its value. This is because it's receiving both of the multiply factors (e.g. one time 2, the other time 4). In order to correctly memoize the selector, wrap the selector inside a factory function to create different instances of the selector.
+	- セレクタは前の入力引数をそのキャッシュに保持するだけであることに注意してください。 このセレクタを別の倍率で再使用すると、セレクタは常にその値を再評価する必要があります。 これは、両方の乗数（たとえば、一方は時間2、もう一方は時間4）を受け取っているためです。 セレクタを正しく記憶するには、セレクタをファクトリ関数内にラップして、セレクタのさまざまなインスタンスを作成します。
+- The following is an example of using multiple counters differentiated by id.
+	- 以下は、idによって区別される複数のカウンタの使用例です。
+
+```ts
+export const getCount = () =>
+  createSelector(
+    (state, props) => state.counter[props.id],
+    (counter, props) => counter * props.multiply
+  );
+```
+
+- The component's selectors are now calling the factory function to create different selector instances:
+	- コンポーネントのセレクタは、さまざまなセレクタインスタンスを作成するためにfactory関数を呼び出しています。
+```ts
+ngOnInit() {
+  this.counter2 = this.store.pipe(select(fromRoot.getCount(), { id: 'counter2', multiply: 2 }));
+  this.counter4 = this.store.pipe(select(fromRoot.getCount(), { id: 'counter4', multiply: 4 }));
+  this.counter6 = this.store.pipe(select(fromRoot.getCount(), { id: 'counter6', multiply: 6 }));
+}
+```
+
+## Selecting Feature States
+- The createFeatureSelector is a convenience method for returning a top level feature state. It returns a typed selector function for a feature slice of state.
+	- createFeatureSelectorは、最上位の機能状態を返すための便利なメソッドです。 状態の特徴スライスに対して型付きセレクタ関数を返します。
+### Example
+```ts
+import { createSelector, createFeatureSelector } from '@ngrx/store';
+ 
+export interface FeatureState {
+  counter: number;
+}
+ 
+export interface AppState {
+  feature: FeatureState;
+}
+ 
+export const selectFeature = createFeatureSelector<AppState, FeatureState>('feature');
+ 
+export const selectFeatureCount = createSelector(
+  selectFeature,
+  (state: FeatureState) => state.counter
+);
+```
+
+- The following selector below would not compile because foo is not a feature slice of AppState.
+	- fooはAppStateの機能スライスではないため、次のセレクタはコンパイルできません。
+```ts
+export const selectFeature = createFeatureSelector<AppState, FeatureState>('foo');
+```
+
+## Resetting Memoized Selectors
+- The selector function returned by calling createSelector or createFeatureSelector initially has a memoized value of null. After a selector is invoked the first time its memoized value is stored in memory. If the selector is subsequently invoked with the same arguments it will return the memoized value. If the selector is then invoked with different arguments it will recompute and update its memoized value. Consider the following:
+	- createSelectorまたはcreateFeatureSelectorを呼び出すことによって返されたセレクター関数は、最初はメモ化された値nullを持ちます。 セレクタが最初に呼び出された後、その記憶された値はメモリに格納されます。 その後セレクタが同じ引数で呼び出された場合、それは記憶された値を返します。 セレクタが異なる引数で呼び出された場合、それは記憶されている値を再計算して更新します。 次の点を考慮してください。
+```ts
+import { createSelector } from '@ngrx/store';
+ 
+export interface State {
+  counter1: number;
+  counter2: number;
+}
+ 
+export const selectCounter1 = (state: State) => state.counter1;
+export const selectCounter2 = (state: State) => state.counter2;
+export const selectTotal = createSelector(
+  selectCounter1,
+  selectCounter2,
+  (counter1, counter2) => counter1 + counter2
+); // selectTotal has a memoized value of null, because it has not yet been invoked.
+ 
+let state = { counter1: 3, counter2: 4 };
+ 
+selectTotal(state); // computes the sum of 3 & 4, returning 7. selectTotal now has a memoized value of 7
+selectTotal(state); // does not compute the sum of 3 & 4. selectTotal instead returns the memoized value of 7
+ 
+state = { ...state, counter2: 5 };
+ 
+selectTotal(state); // computes the sum of 3 & 5, returning 8. selectTotal now has a memoized value of 8
+```
+
+- A selector's memoized value stays in memory indefinitely. If the memoized value is, for example, a large dataset that is no longer needed it's possible to reset the memoized value to null so that the large dataset can be removed from memory. This can be accomplished by invoking the release method on the selector.
+
+```ts
+selectTotal(state); // returns the memoized value of 8
+selectTotal.release(); // memoized value of selectTotal is now null
+```
+
+- Releasing a selector also recursively releases any ancestor selectors. Consider the following:
+
+```ts
+export interface State {
+  evenNums: number[];
+  oddNums: number[];
+}
+ 
+export const selectSumEvenNums = createSelector(
+  (state: State) => state.evenNums,
+  evenNums => evenNums.reduce((prev, curr) => prev + curr)
+);
+export const selectSumOddNums = createSelector(
+  (state: State) => state.oddNums,
+  oddNums => oddNums.reduce((prev, curr) => prev + curr)
+);
+export const selectTotal = createSelector(
+  selectSumEvenNums,
+  selectSumOddNums,
+  (evenSum, oddSum) => evenSum + oddSum
+);
+ 
+selectTotal({
+  evenNums: [2, 4],
+  oddNums: [1, 3],
+});
+ 
+/**
+ * Memoized Values before calling selectTotal.release()
+ *   selectSumEvenNums  6
+ *   selectSumOddNums   4
+ *   selectTotal        10
+ */
+ 
+selectTotal.release();
+ 
+/**
+ * Memoized Values after calling selectTotal.release()
+ *   selectSumEvenNums  null
+ *   selectSumOddNums   null
+ *   selectTotal        null
+ */
+```
+
+## Advanced Usage
+- Selectors empower you to compose a read model for your application state. In terms of the CQRS architectural pattern, NgRx separates the read model (selectors) from the write model (reducers). An advanced technique is to combine selectors with RxJS pipeable operators.
+
+- This section covers some basics of how selectors compare to pipeable operators and demonstrates how createSelector and scan are utilized to display a history of state transitions.
+
+### Breaking Down the Basics
+#### Select a non-empty state using pipeable operators
+- Let's pretend we have a selector called selectValues and the component for displaying the data is only interested in defined values, i.e., it should not display empty states.
+
+- We can achieve this behaviour by using only RxJS pipeable operators:
+
+```ts
+import { map, filter } from 'rxjs/operators';
+
+store
+  .pipe(
+    map(state => selectValues(state)),
+    filter(val => val !== undefined)
+  )
+  .subscribe(/* .. */);
+```
+
+- The above can be further re-written to use the select() utility function from NgRx:
+
+```ts
+import { select } from '@ngrx/store';
+import { map, filter } from 'rxjs/operators';
+
+store
+  .pipe(
+    select(selectValues),
+    filter(val => val !== undefined)
+  )
+  .subscribe(/* .. */);
+```
+
+#### Solution: Extracting a pipeable operator
+- To make the select() and filter() behaviour a re-usable piece of code, we extract a pipeable operator using the RxJS pipe() utility function:
+```ts
+import { select } from '@ngrx/store';
+import { pipe } from 'rxjs';
+import { filter } from 'rxjs/operators';
+
+export const selectFilteredValues = pipe(
+  select(selectValues),
+  filter(val => val !== undefined)
+);
+
+store.pipe(selectFilteredValues).subscribe(/* .. */);
+```
+
+### Advanced Example: Select the last {n} state transitions
+- Let's examine the technique of combining NgRx selectors and RxJS operators in an advanced example.
+
+- In this example, we will write a selector function that projects values from two different slices of the application state. The projected state will emit a value when both slices of state have a value. Otherwise, the selector will emit an undefined value.
+
+```ts
+export const selectProjectedValues = createSelector(
+  selectFoo,
+  selectBar,
+  (foo, bar) => {
+    if (foo && bar) {
+      return { foo, bar };
+    }
+
+    return undefined;
+  }
+);
+```
+
+- Then, the component should visualize the history of state transitions. We are not only interested in the current state but rather like to display the last n pieces of state. Meaning that we will map a stream of state values (1, 2, 3) to an array of state values ([1, 2, 3]).
+
+```ts
+// The number of state transitions is given by the user (subscriber)
+export const selectLastStateTransitions = (count: number) => {
+ 
+  return pipe(
+    // Thanks to `createSelector` the operator will have memoization "for free"
+    select(selectProjectedValues),
+    // Combines the last `count` state values in array
+    scan((acc, curr) => {
+      return [ curr, acc[0], acc[1] ].filter(val => val !== undefined);
+    } [] as {foo: number; bar: string}[]) // XX: Explicit type hint for the array.
+                                          // Equivalent to what is emitted by the selector
+  );
+}
+```
+
+- Finally, the component will subscribe to the store, telling the number of state transitions it wishes to display:
+
+```ts
+// Subscribe to the store using the custom pipeable operator
+store.pipe(selectLastStateTransitions(3)).subscribe(/* .. */);
+```

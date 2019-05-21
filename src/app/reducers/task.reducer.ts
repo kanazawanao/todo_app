@@ -16,12 +16,15 @@ export const initialState: State = {
 export function reducer(state = initialState, action: Action): State {
   switch (action.type) {
     case ActionTypes.Add:
+      console.log('Add 実行されました。');
       return state;
 
     case ActionTypes.Delete:
+      console.log('Delete 実行されました。');
       return state;
 
     case ActionTypes.Update:
+      console.log('Update実行されました。');
       state.login = true;
       return state;
 
@@ -31,6 +34,7 @@ export function reducer(state = initialState, action: Action): State {
       return state;
 
     default:
+      console.log('何も実行されませんでした');
       return state;
   }
 }

@@ -24,3 +24,5 @@ export class Update implements Action {
 export class GetAll implements Action {
   readonly type = ActionTypes.GetAll;
 }
+
+export type TaskActions = Add | Delete | Update | GetAll;
