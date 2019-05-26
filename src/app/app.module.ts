@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
-import { SignInComponent } from './sign-in/sign-in.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { StoreModule } from '@ngrx/store';
 import { TaskDetailComponent } from './task-detail/task-detail.component';
@@ -14,12 +13,10 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './service/in-memory-data.service';
 import { TaskSearchComponent } from './task-search/task-search.component';
 import { ErrorComponent } from './error/error.component';
-import { reducers, metaReducers } from './reducers';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SignInComponent,
     TodoListComponent,
     TaskDetailComponent,
     MessagesComponent,
@@ -30,7 +27,7 @@ import { reducers, metaReducers } from './reducers';
   imports: [
     BrowserModule,
     FormsModule,
-    StoreModule.forRoot(reducers, { metaReducers }),
+    StoreModule.forRoot({}),
     AppRoutingModule,
     HttpClientModule,
 

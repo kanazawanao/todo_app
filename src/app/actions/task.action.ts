@@ -4,7 +4,8 @@ import { Task } from '../task';
 export enum ActionTypes {
   Add = '[Task Component] Add',
   Delete = '[Task Component] Delete',
-  Update = '[Task Component] Update'
+  Update = '[Task Component] Update',
+  GetAll = '[Task Component] GetAll'
 }
 
 export class Add implements Action {
@@ -22,4 +23,8 @@ export class Update implements Action {
   constructor(public payload: { task: Task }) {}
 }
 
-export type TaskActions = Add | Delete | Update;
+export class GetAll implements Action {
+  readonly type = ActionTypes.GetAll;
+}
+
+export type TaskActions = Add | Delete | Update | GetAll;

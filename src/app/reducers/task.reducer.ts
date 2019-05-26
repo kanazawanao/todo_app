@@ -1,32 +1,42 @@
-import { ActionReducerMap, MetaReducer, Action } from '@ngrx/store';
-import { environment } from '../../environments/environment';
-import { ActionTypes } from '../actions/task.action';
 import { Task } from '../task';
+import { ActionTypes } from '../actions/task.action';
+import { Action } from '@ngrx/store';
 
 export interface State {
-  loading: boolean;
-  tasks: Task[];
+  tasks: Array<Task>;
+  login: boolean;
 }
 
 export const initialState: State = {
-  loading: false,
-  tasks: []
+  tasks: [],
+  login: true
 };
 
-export function taskReducer(state = initialState, action: Action) {
+export function reducer(state = initialState, action: Action): State {
   switch (action.type) {
     case ActionTypes.Add:
-      // add process
-      return { ...state, loading: true };
+      console.log('Add 実行されました。');
+      return state;
 
     case ActionTypes.Delete:
-    // delete process
+      console.log('Delete 実行されました。');
+      return state;
 
     case ActionTypes.Update:
-      // update process
-      return { ...state, loading: true };
+      console.log('Update実行されました。');
+      state.login = true;
+      return state;
+
+    case ActionTypes.GetAll:
+      console.log('GetAll実行されました。');
+      state.login = true;
+      return state;
 
     default:
+      console.log('何も実行されませんでした');
       return state;
   }
 }
+
+export const getTasks = (state: State) => state.tasks;
+export const getLogin = (state: State) => state.login;
