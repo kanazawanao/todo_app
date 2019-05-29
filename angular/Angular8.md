@@ -2,7 +2,7 @@
 - Angularのバージョン8  - 小型バンドル、CLI API、およびエコシステムとの連携
 
 - The 8.0.0 release of Angular is here! This is a major release spanning the entire platform, including the framework, Angular Material, and the CLI with synchronized major versions. This release improves application startup time on modern browsers, provides new APIs for tapping into the CLI, and aligns Angular to the ecosystem and more web standards.
-  - Angularの8.0.0リリースはこちらです。これは、フレームワーク、Angular Material、および同期メジャーバージョンを含むCLIを含む、プラットフォーム全体にわたるメジャーリリースです。このリリースでは、最新のブラウザでのアプリケーション起動時間が短縮され、CLIを利用するための新しいAPIが提供され、Angularがエコシステムやその他のWeb標準に準拠するようになりました。
+  - Angularの8.0.0リリースについて。これは、フレームワーク、Angular Material、および同期メジャーバージョンを含むCLIを含む、プラットフォーム全体にわたるメジャーリリースです。このリリースでは、最新のブラウザでのアプリケーション起動時間が短縮され、CLIを利用するための新しいAPIが提供され、Angularがエコシステムやその他のWeb標準に準拠するようになりました。
 
 ## How to update to version 8
 - Visit [update.angular.io](https://update.angular.io/) for detailed information and guidance. For most developers, one command should take care of this update:
