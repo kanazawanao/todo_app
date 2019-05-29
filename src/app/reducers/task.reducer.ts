@@ -3,15 +3,14 @@ import { ActionTypes } from '../actions/task.action';
 import { Action } from '@ngrx/store';
 
 export interface State {
-  tasks: Array<Task>,
-  login: boolean,
+  tasks: Array<Task>;
+  login: boolean;
 }
 
 export const initialState: State = {
   tasks: [],
-  login: true,
+  login: true
 };
-
 
 export function reducer(state = initialState, action: Action): State {
   switch (action.type) {
