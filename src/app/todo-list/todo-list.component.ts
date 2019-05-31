@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 
-import * as TaskActions from '../actions/task.action';
-import * as TaskReducer from '../reducers/task.reducer';
-import { getLogin } from '../reducers/task.reducer';
+import * as TaskActions from '../state/core.action';
+import * as fromCore from '../state';
 import { TaskService } from '../service/task.service';
 import { Task } from '../task';
 
@@ -24,11 +23,12 @@ export class TodoListComponent implements OnInit {
 
   constructor(
     private taskService: TaskService,
-    private store: Store<TaskReducer.State>
+    private store: Store<fromCore.State>
   ) {}
 
   ngOnInit() {
-    this.login$ = this.store.select(getLogin);
+    this.login$ = this.store.select(fromCore.getLogin);
+    this.tasks$ = this.store.select(fromCore.getTasks);
     this.getTasks();
   }
 

@@ -1,5 +1,5 @@
 import { Task } from '../task';
-import { ActionTypes } from '../actions/task.action';
+import { Actions, ActionTypes } from './core.action';
 import { Action } from '@ngrx/store';
 
 export interface State {
@@ -9,14 +9,15 @@ export interface State {
 
 export const initialState: State = {
   tasks: [],
-  login: true
+  login: false,
 };
 
-export function reducer(state = initialState, action: Action): State {
+export function reducer(state = initialState, action: Actions): State {
   switch (action.type) {
     case ActionTypes.Add:
       console.log('Add 実行されました。');
-      return state;
+      state.tasks.push(action.payload.task);
+      return Object.assign({}, { ...state, tasks : state.tasks });
 
     case ActionTypes.Delete:
       console.log('Delete 実行されました。');

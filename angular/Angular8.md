@@ -1,23 +1,23 @@
 # Version 8 of Angular — Smaller bundles, CLI APIs, and alignment with the ecosystem
-- Angularのバージョン8  - 小型バンドル、CLI API、およびエコシステムとの連携
+- Angularのバージョン8  - Smaller bundles、CLI API、およびエコシステムとの連携
 
 - The 8.0.0 release of Angular is here! This is a major release spanning the entire platform, including the framework, Angular Material, and the CLI with synchronized major versions. This release improves application startup time on modern browsers, provides new APIs for tapping into the CLI, and aligns Angular to the ecosystem and more web standards.
-  - Angularの8.0.0リリースについて。これは、フレームワーク、Angular Material、および同期メジャーバージョンを含むCLIを含む、プラットフォーム全体にわたるメジャーリリースです。このリリースでは、最新のブラウザでのアプリケーション起動時間が短縮され、CLIを利用するための新しいAPIが提供され、Angularがエコシステムやその他のWeb標準に準拠するようになりました。
+  - Angularの8.0.0をリリースしました！これは、フレームワーク、Angular Material、CLIの同期されたメジャーバージョンを含んだ、プラットフォーム全体にまたがるメジャーリリースです。このリリースでは、最新のブラウザでのアプリケーション起動時間が短縮され、CLIを利用するための新しいAPIが提供され、Angularがエコシステムやその他のWeb標準に準拠するようになりました。
 
 ## How to update to version 8
 - Visit [update.angular.io](https://update.angular.io/) for detailed information and guidance. For most developers, one command should take care of this update:
-  - 詳細な情報と手引きについては [update.angular.io](https://update.angular.io/) にアクセスしてください。ほとんどの開発者にとって、1つのコマンドでこのアップデートを管理する必要があります。
+  - 詳細な情報と手引きについては [update.angular.io](https://update.angular.io/) で確認してください。ほとんどの開発者はコマンド一つでアップデートできるはずです。
 ```
 ng update @angular/cli @angular/core
 ```
 
 ## Differential Loading by Default
-- デフォルトでの差分ロード
+- デフォルトでのDifferential Loading
 
 - [Differential loading](https://web.dev/codelab-serve-modern-code) is a process by which the browser chooses between modern or legacy JavaScript based on its own capabilities. We now take advantage of this by default by performing a modern build (es2015) and a legacy build (es5) of your application. When users load your application, they’ll automatically get the bundle they need.
-  - [Differential loading](https://web.dev/codelab-serve-modern-code) とは、ブラウザが独自の機能に基づいて最新のJavaScriptと従来のJavaScriptのどちらを使用するかを選択するプロセスです。現在、デフォルトでこれを利用して、最新のビルド（es2015）とレガシービルド（es5）を実行しています。ユーザーがアプリケーションをロードすると、必要なバンドルが自動的に取得されます。
+  - [Differential loading](https://web.dev/codelab-serve-modern-code) とは、ブラウザが独自の機能に基づいて最新のJavaScriptと従来のJavaScriptのどちらを使用するかを選択するプロセスです。デフォルトでこれを利用して、最新のビルド（es2015）とレガシービルド（es5）を実行しています。ユーザーがアプリケーションをロードすると、必要なバンドルが自動的に取得されます。
 
-- If you use ng update, we update your tsconfig.jsonfor you to take advantage of this. Our CLI looks at the target JS level in your tsconfig.json to determine whether or not to take advantage of Differential Loading.
+- If you use ng update, we update your tsconfig.json for you to take advantage of this. Our CLI looks at the target JS level in your tsconfig.json to determine whether or not to take advantage of Differential Loading.
   - ng updateを使用する場合は、これを利用するようにtsconfig.jsonを更新します。私たちのCLIは、tsconfig.jsonのターゲットJSレベルを調べて、差分ロードを利用するかどうかを判断します。
 
 - When target is set to es2015, we generate and label two bundles.
@@ -148,6 +148,8 @@ const worker = new Worker(`./my-worker.worker`, { type: `module` });
 
 ## Ivy & Bazel
 - We know there’s lots of excitement for our forthcoming opt-in previews. We’ll be providing individual updates on these next week on this blog, so stay tuned!
+  - 今後のオプトインプレビューには非常に興奮していることがわかっています。来週はこのブログで個々の最新情報を提供しますので、ご期待ください。
 
 ## Contributors and Collaborators
 - A special thanks to Manfred Steyer for contributing to Differential Loading, Craig Spence to Dynamic Import support, Jason Miller to Web Worker bundling support. This release was brought to you by 286 contributors:
+  - 差分ロード、動的インポートへのCraig Spenceサポート、Web WorkerバンドルサポートへのJason Millerに貢献してくれたManfred Steyerに感謝します。このリリースは、286人の貢献者によってあなたにもたらされました。

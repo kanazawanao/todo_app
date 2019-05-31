@@ -27,4 +27,4 @@ export class GetAll implements Action {
   readonly type = ActionTypes.GetAll;
 }
 
-export type TaskActions = Add | Delete | Update | GetAll;
+export type Actions = Add | Delete | Update | GetAll;
