@@ -1,6 +1,5 @@
 import { Task } from '../task';
-import { Actions, ActionTypes } from './core.action';
-import { setTestabilityGetter } from '@angular/core';
+import { CoreActions, ActionTypes } from './core.action';
 
 export interface State {
   tasks: Array<Task>;
@@ -12,39 +11,32 @@ export const initialState: State = {
   login: false,
 };
 
-export function reducer(state = initialState, action: Actions): State {
+export function reducer(state = initialState, action: CoreActions): State {
   switch (action.type) {
     case ActionTypes.Add:
-      console.log('Add 実行されました。');
       state.tasks.push(action.payload.task);
-      return state;
+      return Object.assign({}, { ...state, tasks: state.tasks });
 
     case ActionTypes.Delete:
-      console.log('Delete 実行されました。');
       return state;
 
     case ActionTypes.Update:
-      console.log('Update実行されました。');
       state.login = true;
       return state;
 
     case ActionTypes.GetAll:
-      console.log('GetAll実行されました。');
       state.login = true;
       return state;
 
     case ActionTypes.GetAllSuccess:
-      console.log('GetAllSuccess実行されました。');
       console.log(action.payload.tasks);
       return Object.assign({}, { ...state, tasks: action.payload.tasks });
 
     case ActionTypes.GetAllFailure:
-      console.log('GetAllFailure実行されました。');
       state.login = true;
       return state;
 
     default:
-      console.log('何も実行されませんでした');
       return state;
   }
 }

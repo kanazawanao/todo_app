@@ -46,9 +46,12 @@ export class TodoListComponent implements OnInit {
     if (!name) {
       return;
     }
-    this.taskService.addTask({ name } as Task).subscribe(task => {
-      this.tasks.push(task);
-    });
+    let task: Task = {
+      done: false,
+      name: name,
+      id: Math.max(...this.tasks.map(task => task.id)) + 1,
+    };
+    this.store.dispatch(new TaskActions.Add({ task }));
   }
 
   delete(task: Task): void {
