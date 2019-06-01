@@ -3,7 +3,7 @@ import { Task } from '../task';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { TaskService }  from '../task.service';
+import { TaskService } from '../service/task.service';
 
 @Component({
   selector: 'app-task-detail',
@@ -23,7 +23,7 @@ export class TaskDetailComponent implements OnInit {
   ngOnInit(): void {
     this.getTask();
   }
-  
+
   getTask(): void {
     const id = +this.route.snapshot.paramMap.get('id');
     this.taskService.getTask(id)
@@ -33,7 +33,7 @@ export class TaskDetailComponent implements OnInit {
   goBack(): void {
     this.location.back();
   }
-  
+
   save(): void {
     this.taskService.updateTask(this.task)
       .subscribe(() => this.goBack());

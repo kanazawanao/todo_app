@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Task } from './task';
+import { Task } from '../task';
 import { Observable, of } from 'rxjs';
 import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -37,7 +37,7 @@ export class TaskService {
   }
 
   /** PUT: サーバー上でタスクを更新 */
-  updateTask (task: Task): Observable<any> {
+  updateTask(task: Task): Observable<any> {
     return this.http.put(this.tasksUrl, task, httpOptions).pipe(
       tap(_ => this.log(`updated task id=${task.id}`)),
       catchError(this.handleError<any>('updateTask'))
@@ -45,7 +45,7 @@ export class TaskService {
   }
 
   /** POST: サーバーに新しいタスクを登録する */
-  addTask (task: Task): Observable<Task> {
+  addTask(task: Task): Observable<Task> {
     return this.http.post<Task>(this.tasksUrl, task, httpOptions).pipe(
       tap((newTask: Task) => this.log(`added task w/ id=${newTask.id}`)),
       catchError(this.handleError<Task>('addTask'))
@@ -53,7 +53,7 @@ export class TaskService {
   }
 
   /** DELETE: サーバーからタスクを削除 */
-  deleteTask (task: Task | number): Observable<Task> {
+  deleteTask(task: Task | number): Observable<Task> {
     const id = typeof task === 'number' ? task : task.id;
     const url = `${this.tasksUrl}/${id}`;
 
@@ -86,15 +86,15 @@ export class TaskService {
    * @param operation - 失敗した操作の名前
    * @param result - observableな結果として返す任意の値
    */
-  private handleError<T> (operation = 'operation', result?: T) {
+  private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-  
+
       // TODO: リモート上のロギング基盤にエラーを送信する
       console.error(error); // かわりにconsoleに出力
-  
+
       // TODO: ユーザーへの開示のためにエラーの変換処理を改善する
       this.log(`${operation} failed: ${error.message}`);
-  
+
       // 空の結果を返して、アプリを持続可能にする
       return of(result as T);
     };
