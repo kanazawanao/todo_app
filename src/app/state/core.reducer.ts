@@ -1,6 +1,5 @@
 import { Task } from '../task';
 import { Actions, ActionTypes } from './core.action';
-import { Action } from '@ngrx/store';
 
 export interface State {
   tasks: Array<Task>;
@@ -17,7 +16,7 @@ export function reducer(state = initialState, action: Actions): State {
     case ActionTypes.Add:
       console.log('Add 実行されました。');
       state.tasks.push(action.payload.task);
-      return Object.assign({}, { ...state, tasks : state.tasks });
+      return state;
 
     case ActionTypes.Delete:
       console.log('Delete 実行されました。');
@@ -30,6 +29,15 @@ export function reducer(state = initialState, action: Actions): State {
 
     case ActionTypes.GetAll:
       console.log('GetAll実行されました。');
+      state.login = true;
+      return state;
+
+    case ActionTypes.GetAllSuccess:
+      console.log('GetAllSuccess実行されました。');
+      return Object.assign({}, { ...state, tasks: action.payload.tasks });
+
+    case ActionTypes.GetAllFailure:
+      console.log('GetAllFailure実行されました。');
       state.login = true;
       return state;
 

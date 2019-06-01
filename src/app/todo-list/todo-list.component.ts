@@ -24,24 +24,24 @@ export class TodoListComponent implements OnInit {
   constructor(
     private taskService: TaskService,
     private store: Store<fromCore.State>
-  ) {}
+  ) { }
 
   ngOnInit() {
-    this.login$ = this.store.select(fromCore.getLogin);
-    this.tasks$ = this.store.select(fromCore.getTasks);
     this.getTasks();
+    this.tasks$ = this.store.select(fromCore.getTasks);
+    this.login$ = this.store.select(fromCore.getLogin);
+    this.tasks$.subscribe(t => this.tasks = t);
   }
 
   onSelect(task: Task): void {
     this.selectedTask = task;
   }
 
-  update() {}
+  update() { }
 
   getTasks(): void {
     console.log('getTasks実行されました');
     this.store.dispatch(new TaskActions.GetAll());
-    this.taskService.getTasks().subscribe(tasks => (this.tasks = tasks));
   }
 
   add(name: string): void {

@@ -17,6 +17,7 @@ export const reducers: ActionReducerMap<State> = {
 };
 
 export const metaReducers: MetaReducer<State>[] = !environment.production ? [] : [];
+
 export const selectCore = (state: State) => state.core;
 export const getLogin = createSelector(selectCore, fromCore.getLogin);
 export const getTasks = createSelector(selectCore, fromCore.getTasks);
