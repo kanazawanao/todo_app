@@ -4,7 +4,6 @@ import { Store } from '@ngrx/store';
 
 import * as TaskActions from '../state/core.action';
 import * as fromCore from '../state';
-import { TaskService } from '../service/task.service';
 import { Task } from '../task';
 
 @Component({
@@ -19,7 +18,6 @@ export class TodoListComponent implements OnInit {
   selectedTask: Task;
 
   constructor(
-    private taskService: TaskService,
     private store: Store<fromCore.State>
   ) { }
 
@@ -55,7 +53,6 @@ export class TodoListComponent implements OnInit {
   }
 
   delete(task: Task): void {
-    this.tasks = this.tasks.filter(t => t !== task);
-    this.taskService.deleteTask(task).subscribe();
+    this.store.dispatch(new TaskActions.Delete({ task }));
   }
 }

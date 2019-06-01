@@ -6,6 +6,8 @@ export enum ActionTypes {
   AddSuccess = '[Task] AddSuccess',
   AddFailure = '[Task] AddFailure',
   Delete = '[Task] Delete',
+  DeleteSuccess = '[Task] DeleteSuccess',
+  DeleteFailure = '[Task] DeleteFailure',
   Update = '[Task] Update',
   GetAll = '[Task] GetAll',
   GetAllSuccess = '[Task] GetAllSuccess',
@@ -28,6 +30,14 @@ export class AddFailure implements Action {
 export class Delete implements Action {
   readonly type = ActionTypes.Delete;
   constructor(public payload: { task: Task }) { }
+}
+
+export class DeleteSuccess implements Action {
+  readonly type = ActionTypes.DeleteSuccess;
+}
+
+export class DeleteFailure implements Action {
+  readonly type = ActionTypes.DeleteFailure;
 }
 
 export class Update implements Action {
