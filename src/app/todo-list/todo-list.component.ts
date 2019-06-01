@@ -14,11 +14,8 @@ import { Task } from '../task';
 })
 export class TodoListComponent implements OnInit {
   tasks: Task[];
-
   tasks$: Observable<Task[]>;
-
   login$: Observable<boolean>;
-
   selectedTask: Task;
 
   constructor(

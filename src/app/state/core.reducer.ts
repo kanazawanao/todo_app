@@ -1,5 +1,6 @@
 import { Task } from '../task';
 import { Actions, ActionTypes } from './core.action';
+import { setTestabilityGetter } from '@angular/core';
 
 export interface State {
   tasks: Array<Task>;
@@ -34,6 +35,7 @@ export function reducer(state = initialState, action: Actions): State {
 
     case ActionTypes.GetAllSuccess:
       console.log('GetAllSuccess実行されました。');
+      console.log(action.payload.tasks);
       return Object.assign({}, { ...state, tasks: action.payload.tasks });
 
     case ActionTypes.GetAllFailure:
