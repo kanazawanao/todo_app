@@ -1,8 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Task } from '../task';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { Store } from '@ngrx/store';
 
+import * as TaskActions from '../state/core.action';
+import * as fromCore from '../state';
+import { Task } from '../task';
 import { TaskService } from '../service/task.service';
 
 @Component({
@@ -17,8 +20,9 @@ export class TaskDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private taskService: TaskService,
-    private location: Location
-  ) {}
+    private location: Location,
+    private store: Store<fromCore.State>
+  ) { }
 
   ngOnInit(): void {
     this.getTask();
@@ -34,7 +38,8 @@ export class TaskDetailComponent implements OnInit {
     this.location.back();
   }
 
-  save(): void {
+  save(task: Task): void {
+    this.store.dispatch(new TaskActions.Update({ task }));
     this.taskService.updateTask(this.task)
       .subscribe(() => this.goBack());
   }

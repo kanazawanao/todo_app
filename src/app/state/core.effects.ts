@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
+import { map, mergeMap, catchError, concatMap } from 'rxjs/operators';
+import { of } from 'rxjs';
+
 import * as CoreActions from './core.action';
 import { TaskService } from '../service/task.service';
-import { of } from 'rxjs';
-import { map, mergeMap, catchError, concatMap } from 'rxjs/operators';
 
 
 @Injectable()
@@ -40,6 +41,19 @@ export class CoreEffects {
       return this.taskService.deleteTask(task).pipe(
         map(result => new CoreActions.DeleteSuccess()),
         catchError(error => of(new CoreActions.DeleteFailure()))
+      );
+    })
+  );
+
+  @Effect()
+  updateTask$ = this.actions$.pipe(
+    ofType<CoreActions.Update>(CoreActions.ActionTypes.Update),
+    map(action => action.payload),
+    concatMap(payload => {
+      const { task } = payload;
+      return this.taskService.updateTask(task).pipe(
+        map(result => new CoreActions.UpdateSuccess()),
+        catchError(error => of(new CoreActions.UpdateFailure()))
       );
     })
   );

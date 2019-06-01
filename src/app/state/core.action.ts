@@ -14,6 +14,9 @@ export enum ActionTypes {
   GetAll = '[Task] GetAll',
   GetAllSuccess = '[Task] GetAllSuccess',
   GetAllFailure = '[Task] GetAllFailure',
+  Get = '[Task] GetAll',
+  GetSuccess = '[Task] GetSuccess',
+  GetFailure = '[Task] GetFailure',
 }
 
 export class Add implements Action {

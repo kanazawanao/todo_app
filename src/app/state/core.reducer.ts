@@ -18,18 +18,25 @@ export function reducer(state = initialState, action: CoreActions): State {
       return Object.assign({}, { ...state, tasks: state.tasks });
 
     case ActionTypes.Delete:
-      const result = Array<Task>();
+      const deleteResult = Array<Task>();
       for (let t of state.tasks) {
         if (t.id === action.payload.task.id) {
           continue;
         }
-        result.push(t);
+        deleteResult.push(t);
       }
-      return Object.assign({}, { ...state, tasks: result });
+      return Object.assign({}, { ...state, tasks: deleteResult });
 
     case ActionTypes.Update:
-      state.login = true;
-      return state;
+      const updateResult = Array<Task>();
+      for (let t of state.tasks) {
+        if (t.id === action.payload.task.id) {
+          updateResult.push(action.payload.task);
+          continue;
+        }
+        updateResult.push(t);
+      }
+      return Object.assign({}, { ...state, tasks: updateResult });
 
     case ActionTypes.GetAll:
       state.login = true;
