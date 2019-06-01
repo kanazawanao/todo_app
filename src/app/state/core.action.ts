@@ -9,6 +9,8 @@ export enum ActionTypes {
   DeleteSuccess = '[Task] DeleteSuccess',
   DeleteFailure = '[Task] DeleteFailure',
   Update = '[Task] Update',
+  UpdateSuccess = '[Task] UpdateSuccess',
+  UpdateFailure = '[Task] UpdateFailure',
   GetAll = '[Task] GetAll',
   GetAllSuccess = '[Task] GetAllSuccess',
   GetAllFailure = '[Task] GetAllFailure',
@@ -45,6 +47,14 @@ export class Update implements Action {
   constructor(public payload: { task: Task }) { }
 }
 
+export class UpdateSuccess implements Action {
+  readonly type = ActionTypes.UpdateSuccess;
+}
+
+export class UpdateFailure implements Action {
+  readonly type = ActionTypes.UpdateFailure;
+}
+
 export class GetAll implements Action {
   readonly type = ActionTypes.GetAll;
 }
@@ -58,4 +68,16 @@ export class GetAllFailure implements Action {
   readonly type = ActionTypes.GetAllFailure;
 }
 
-export type CoreActions = Add | AddSuccess | AddFailure | Delete | Update | GetAll | GetAllSuccess | GetAllFailure;
+export type CoreActions =
+  Add
+  | AddSuccess
+  | AddFailure
+  | Delete
+  | DeleteSuccess
+  | DeleteFailure
+  | Update
+  | UpdateSuccess
+  | UpdateFailure
+  | GetAll
+  | GetAllSuccess
+  | GetAllFailure;

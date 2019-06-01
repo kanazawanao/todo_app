@@ -18,7 +18,7 @@ export function reducer(state = initialState, action: CoreActions): State {
       return Object.assign({}, { ...state, tasks: state.tasks });
 
     case ActionTypes.Delete:
-      let result = Array<Task>();
+      const result = Array<Task>();
       for (let t of state.tasks) {
         if (t.id === action.payload.task.id) {
           continue;

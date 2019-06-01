@@ -27,7 +27,7 @@ export class CoreEffects {
       return this.taskService.addTask(task).pipe(
         map(result => new CoreActions.AddSuccess()),
         catchError(error => of(new CoreActions.AddFailure()))
-      )
+      );
     })
   );
 
@@ -40,7 +40,7 @@ export class CoreEffects {
       return this.taskService.deleteTask(task).pipe(
         map(result => new CoreActions.DeleteSuccess()),
         catchError(error => of(new CoreActions.DeleteFailure()))
-      )
+      );
     })
   );
 

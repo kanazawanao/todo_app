@@ -44,10 +44,10 @@ export class TodoListComponent implements OnInit {
     if (!name) {
       return;
     }
-    let task: Task = {
+    const task: Task = {
       done: false,
       name: name,
-      id: Math.max(...this.tasks.map(task => task.id)) + 1,
+      id: Math.max(...this.tasks.map(t => t.id)) + 1,
     };
     this.store.dispatch(new TaskActions.Add({ task }));
   }
