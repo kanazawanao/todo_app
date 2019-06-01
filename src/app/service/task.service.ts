@@ -13,14 +13,13 @@ const httpOptions = {
 })
 
 export class TaskService {
-  private tasksUrl = 'api/tasks';  // Web APIのURL
+  private tasksUrl = 'api/tasks';
 
   constructor(
     private http: HttpClient,
     private messageService: MessageService) { }
 
   getTasks(): Observable<Task[]> {
-    // TODO: send the message _after_ fetching the tasks
     this.messageService.add('TaskService: fetched tasks');
     return this.http.get<Task[]>(this.tasksUrl).pipe(
       tap(tasks => this.log('fetched tasks')),
@@ -36,7 +35,6 @@ export class TaskService {
     );
   }
 
-  /** PUT: サーバー上でタスクを更新 */
   updateTask(task: Task): Observable<any> {
     return this.http.put(this.tasksUrl, task, httpOptions).pipe(
       tap(_ => this.log(`updated task id=${task.id}`)),
@@ -44,7 +42,6 @@ export class TaskService {
     );
   }
 
-  /** POST: サーバーに新しいタスクを登録する */
   addTask(task: Task): Observable<Task> {
     return this.http.post<Task>(this.tasksUrl, task, httpOptions).pipe(
       tap((newTask: Task) => this.log(`added task w/ id=${newTask.id}`)),
@@ -52,7 +49,6 @@ export class TaskService {
     );
   }
 
-  /** DELETE: サーバーからタスクを削除 */
   deleteTask(task: Task | number): Observable<Task> {
     const id = typeof task === 'number' ? task : task.id;
     const url = `${this.tasksUrl}/${id}`;
@@ -63,10 +59,8 @@ export class TaskService {
     );
   }
 
-  /* 検索語を含むタスクを取得する */
   searchTasks(term: string): Observable<Task[]> {
     if (!term.trim()) {
-      // 検索語がない場合、空のタスク配列を返す
       return of([]);
     }
     return this.http.get<Task[]>(`${this.tasksUrl}/?name=${term}`).pipe(
@@ -75,17 +69,10 @@ export class TaskService {
     );
   }
 
-  /** TaskServiceのメッセージをMessageServiceを使って記録 */
   private log(message: string) {
     this.messageService.add(`Taskervice: ${message}`);
   }
 
-  /**
-   * 失敗したHttp操作を処理します。
-   * アプリを持続させます。
-   * @param operation - 失敗した操作の名前
-   * @param result - observableな結果として返す任意の値
-   */
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
